@@ -1,0 +1,3 @@
+h1 Show {{ display_name }}
+
+p TODO: generate show view in show.slang with Jennifer support

@@ -8,6 +8,7 @@ cache:
 env:
   - FILENAME=basic_crecto
   - FILENAME=basic_granite
+  - FILENAME=jennifer
   - FILENAME=default
   - FILENAME=misc_modular
 

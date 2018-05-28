@@ -1,0 +1,4 @@
+require "./spec_helper"
+require "../../src/models/{{name}}"
+
+# TODO: generate Jennifer specs for model {{ name }}.cr
