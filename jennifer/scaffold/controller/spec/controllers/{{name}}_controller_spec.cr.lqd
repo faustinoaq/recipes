@@ -39,7 +39,7 @@ describe {{ class_name }}ControllerTest do
 
   it "renders {{ name }} index template" do
     # TODO: clean and implement Jennifer model {{ class_name }}
-    
+
     response = subject.get "/{{ name | pluralize }}"
 
     response.status_code.should eq(200)
@@ -48,7 +48,7 @@ describe {{ class_name }}ControllerTest do
 
   it "renders {{ name }} show template" do
     # TODO: clean and implement Jennifer model {{ class_name }}
-    
+
     # model = create_{{ name | underscore }}
     # location = "/{{ name | pluralize }}/#{model.id}"
 
@@ -60,7 +60,7 @@ describe {{ class_name }}ControllerTest do
 
   it "renders {{ name }} new template" do
     # TODO: clean and implement Jennifer model {{ class_name }}
-    
+
     location = "/{{ name | pluralize }}/new"
 
     response = subject.get location
@@ -71,7 +71,7 @@ describe {{ class_name }}ControllerTest do
 
   it "renders {{ name }} edit template" do
     # TODO: clean and implement Jennifer model {{ class_name }}
-    
+
     # model = create_{{ name | underscore }}
     # location = "/{{ name | pluralize }}/#{model.id}/edit"
 
@@ -83,7 +83,7 @@ describe {{ class_name }}ControllerTest do
 
   it "creates a {{ name }}" do
     # TODO: clean and implement Jennifer model {{ class_name }}
-    
+
     # response = subject.post "/{{ name | pluralize }}", body: {{ name | underscore }}_params
 
     # response.headers["Location"].should eq "/{{ name | pluralize }}"
@@ -93,7 +93,7 @@ describe {{ class_name }}ControllerTest do
 
   it "updates a {{ name }}" do
     # TODO: clean and implement Jennifer model {{ class_name }}
-    
+
     # model = create_{{ name | underscore }}
     # response = subject.patch "/{{ name | pluralize }}/#{model.id}", body: {{ name | underscore }}_params
 
@@ -104,7 +104,7 @@ describe {{ class_name }}ControllerTest do
 
   it "deletes a {{ name }}" do
     # TODO: clean and implement Jennifer model {{ class_name }}
-    
+
     # model = create_{{ name | underscore }}
     # response = subject.delete "/{{ name | pluralize }}/#{model.id}"
 
