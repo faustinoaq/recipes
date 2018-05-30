@@ -8,16 +8,18 @@ def {{ name | underscore }}_params
   params = [] of String
   {% for field in visible_fields -%}
   {% if field.type == "reference" -%}
-  params << "{{ field.name }}_id=#{ {{- name | underscore }}_hash["{{ field.name }}_id"]}"
+    params << "{{ field.name }}_id=#{ {{ name | underscore }}_hash["{{ field.name }}_id"] }"
   {% else -%}
-  params << "{{ field.name }}=#{ {{- name | underscore }}_hash["{{ field.name }}"]}"
+    params << "{{ field.name }}=#{ {{ name | underscore }}_hash["{{ field.name }}"] }"
   {% endif -%}
   {% endfor -%}
   params.join("&")
 end
 
 def create_{{ name | underscore }}
-  # TODO: create and implement Jennifer models for {{ class_name }}
+  model = {{ class_name }}.build({{ name | underscore }}_hash)
+  model.save
+  model
 end
 
 class {{ class_name }}ControllerTest < GarnetSpec::Controller::Test
@@ -38,8 +40,6 @@ describe {{ class_name }}ControllerTest do
   subject = {{ class_name }}ControllerTest.new
 
   it "renders {{ name }} index template" do
-    # TODO: clean and implement Jennifer model {{ class_name }}
-
     response = subject.get "/{{ name | pluralize }}"
 
     response.status_code.should eq(200)
@@ -47,20 +47,16 @@ describe {{ class_name }}ControllerTest do
   end
 
   it "renders {{ name }} show template" do
-    # TODO: clean and implement Jennifer model {{ class_name }}
+    model = create_{{ name | underscore }}
+    location = "/{{ name | pluralize }}/#{model.id}"
 
-    # model = create_{{ name | underscore }}
-    # location = "/{{ name | pluralize }}/#{model.id}"
+    response = subject.get location
 
-    # response = subject.get location
-
-    # response.status_code.should eq(200)
-    # response.body.should contain("Show {{ display_name }}")
+    response.status_code.should eq(200)
+    response.body.should contain("Show {{ display_name }}")
   end
 
   it "renders {{ name }} new template" do
-    # TODO: clean and implement Jennifer model {{ class_name }}
-
     location = "/{{ name | pluralize }}/new"
 
     response = subject.get location
@@ -70,46 +66,38 @@ describe {{ class_name }}ControllerTest do
   end
 
   it "renders {{ name }} edit template" do
-    # TODO: clean and implement Jennifer model {{ class_name }}
+    model = create_{{ name | underscore }}
+    location = "/{{ name | pluralize }}/#{model.id}/edit"
 
-    # model = create_{{ name | underscore }}
-    # location = "/{{ name | pluralize }}/#{model.id}/edit"
+    response = subject.get location
 
-    # response = subject.get location
-
-    # response.status_code.should eq(200)
-    # response.body.should contain("Edit {{ display_name }}")
+    response.status_code.should eq(200)
+    response.body.should contain("Edit {{ display_name }}")
   end
 
   it "creates a {{ name }}" do
-    # TODO: clean and implement Jennifer model {{ class_name }}
+    response = subject.post "/{{ name | pluralize }}", body: {{ name | underscore }}_params
 
-    # response = subject.post "/{{ name | pluralize }}", body: {{ name | underscore }}_params
-
-    # response.headers["Location"].should eq "/{{ name | pluralize }}"
-    # response.status_code.should eq(302)
-    # response.body.should eq "302"
+    response.headers["Location"].should eq "/{{ name | pluralize }}"
+    response.status_code.should eq(302)
+    response.body.should eq "302"
   end
 
   it "updates a {{ name }}" do
-    # TODO: clean and implement Jennifer model {{ class_name }}
+    model = create_{{ name | underscore }}
+    response = subject.patch "/{{ name | pluralize }}/#{model.id}", body: {{ name | underscore }}_params
 
-    # model = create_{{ name | underscore }}
-    # response = subject.patch "/{{ name | pluralize }}/#{model.id}", body: {{ name | underscore }}_params
-
-    # response.headers["Location"].should eq "/{{ name | pluralize }}"
-    # response.status_code.should eq(302)
-    # response.body.should eq "302"
+    response.headers["Location"].should eq "/{{ name | pluralize }}"
+    response.status_code.should eq(302)
+    response.body.should eq "302"
   end
 
   it "deletes a {{ name }}" do
-    # TODO: clean and implement Jennifer model {{ class_name }}
+    model = create_{{ name | underscore }}
+    response = subject.delete "/{{ name | pluralize }}/#{model.id}"
 
-    # model = create_{{ name | underscore }}
-    # response = subject.delete "/{{ name | pluralize }}/#{model.id}"
-
-    # response.headers["Location"].should eq "/{{ name | pluralize }}"
-    # response.status_code.should eq(302)
-    # response.body.should eq "302"
+    response.headers["Location"].should eq "/{{ name | pluralize }}"
+    response.status_code.should eq(302)
+    response.body.should eq "302"
   end
 end

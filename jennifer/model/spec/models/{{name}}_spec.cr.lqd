@@ -1,4 +1,6 @@
 require "./spec_helper"
 require "../../src/models/{{name}}"
 
-# TODO: generate Jennifer specs for model {{ name }}.cr
+describe {{class_name}} do
+  pending "add tests for {{class_name}}" {}
+end

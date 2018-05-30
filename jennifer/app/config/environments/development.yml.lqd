@@ -19,6 +19,7 @@ logging:
 host: 0.0.0.0
 port_reuse: true
 process_count: 1
+local_time_zone: UTC
 # ssl_key_file:
 # ssl_cert_file:
 redis_url: "redis://localhost:6379"

@@ -1,8 +1,7 @@
-# generated from {{recipe}} recipe
 class {{class_name}}Controller < ApplicationController
 {% for action in action_names -%}
-{{"  "}}def {{action}}
-{{"    "}}render("{{action}}.{{language}}")
-{{"  "}}end
+  def {{action}}
+    render("{{action}}.{{language}}")
+  end
 {% endfor -%}
 end

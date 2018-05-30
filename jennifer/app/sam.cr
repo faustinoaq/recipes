@@ -4,6 +4,11 @@ require "./db/migrations/*"
 
 load_dependencies "jennifer"
 
+# This will hide all query related log information beneath INFO level
+Jennifer::Config.configure do |conf|
+  conf.logger.level = Logger::INFO
+end
+
 #
 # This is a Sam file. Place your tasks here or in separate files and load them
 # explicitly. To load any package defined Sam task - use:
