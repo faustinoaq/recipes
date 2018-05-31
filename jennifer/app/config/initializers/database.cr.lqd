@@ -1,9 +1,9 @@
 require "jennifer"
-{% if database == "pg" %}
+{% if database == "pg" -%}
 require "jennifer/adapter/postgres"
-{% else %}
+{% else -%}
 require "jennifer/adapter/{{database}}
-{% endif %}
+{% endif -%}
 
 TimeZone::Zone.default = Amber.settings.local_time_zone.not_nil!
 

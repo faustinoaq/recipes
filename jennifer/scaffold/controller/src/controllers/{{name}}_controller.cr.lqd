@@ -62,12 +62,12 @@ class {{ class_name }}Controller < ApplicationController
     redirect_to "/{{ name | pluralize }}"
   end
 
-  def {{ name }}_params
+  private def {{ name }}_params
     {{ class_name }}.build_params(
       params.validation do
-{% for field in visible_fields %}
-        required(:{{ field.name }}{% if field.type == "reference" %}_id{% endif %} ) { |f| !f.nil? }
-{% endfor %}
+      {% for field in visible_fields -%}
+      {{"  "}}required(:{{ field.name }}{% if field.type == "reference" %}_id{% endif %} ) { |f| !f.nil? }
+      {% endfor -%}
       end.validate!
     )
   end

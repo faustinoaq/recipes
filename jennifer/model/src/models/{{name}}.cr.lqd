@@ -12,13 +12,13 @@ class {{ class_name }} < Jennifer::Model::Base
 {%- for field in fields -%}
 {%- if field.name != "id" -%}
 {%- if field.type == "reference" %}
-    {{ field.name }}_id: { type: Int32? },
+    {{ field.name }}_id: {type: Int32?},
 {%- elsif field.name == "created_at" %}
-    {{ field.name }}: { type: {{ field.cr_type }}? },
+    {{ field.name }}: {type: {{ field.cr_type }}?},
 {%- elsif field.name == "updated_at" %}
-    {{ field.name }}: { type: {{ field.cr_type }}? },
+    {{ field.name }}: {type: {{ field.cr_type }}?},
 {%- else %}
-    {{ field.name }}: { type: {{ field.cr_type }} },
+    {{ field.name }}: {type: {{ field.cr_type }}},
 {% endif -%}
 {% endif -%}
 {% endfor %}
